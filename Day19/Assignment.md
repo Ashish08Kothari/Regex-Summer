@@ -45,28 +45,14 @@ Once the table is ready, the next step is to load data from a CSV file stored in
 
 ```sql
 COPY INTO regexdb2.public.zomato_data
-FROM (
-    SELECT 
-        $1::STRING AS url,
-        $2::STRING AS address,
-        $3::STRING AS name,
-        $4::STRING AS online_order,
-        $5::STRING AS book_table,
-        $6::STRING AS rate,
-        $7::STRING AS votes,
-        $8::STRING AS phone,
-        $9::STRING AS location,
-        $10::STRING AS rest_type,
-        $11::STRING AS dish_liked,
-        $12::STRING AS cuisines,
-        $13::STRING AS approx_cost_for_two_people,
-        $14::STRING AS reviews_list,
-        $15::STRING AS menu_item,
-        $16::STRING AS listed_in_type,
-        $17::STRING AS listed_in_city
-    FROM @manage_db2.external_stages.aws_stage/zomato.csv
-)
-FILE_FORMAT = (TYPE = 'CSV' FIELD_DELIMITER = ',' SKIP_HEADER = 1);
+FROM @manage_db2.external_stages.aws_stage/zomato.csv
+FILE_FORMAT = (
+    TYPE = 'CSV',
+    FIELD_DELIMITER = ',',
+    SKIP_HEADER = 1,
+    FIELD_OPTIONALLY_ENCLOSED_BY = '"',
+    TRIM_SPACE = TRUE
+);
 
 ```
 
