@@ -46,8 +46,6 @@ real-time-aws-kafka-etl/
 ├── sql/
 │   └── schema.sql                   # MySQL table creation script
 │
-├── utils/
-│   └── s3_utils.ipynb                  # Helper functions for uploading to S3
 │
 ├── visualization/
 │   └── dashboard.pptx               # Tableau dashboards
